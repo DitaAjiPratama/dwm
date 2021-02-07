@@ -28,4 +28,4 @@ else
     b=""
 fi
 
-echo " "$a $b $cap"%"
+echo $a $b $cap"%"
