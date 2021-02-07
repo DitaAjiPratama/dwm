@@ -59,6 +59,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_blue2, "-nf", col_blush, "-sb", col_yellow2, "-sf", col_blue1, NULL };
 static const char *termcmd[]  = { "konsole", NULL };
 static const char *filecmd[]  = { "dolphin", NULL };
+static const char *scrotcmd[]  = { "scrot", "-t", "25", NULL };
 
 #include "shiftview.c"
 
@@ -67,7 +68,8 @@ static Key keys[] = {
         { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
         { MODKEY,                       XK_k,      spawn,          {.v = termcmd } },
         { MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
-
+	
+	{ 0,            		XK_Print,  spawn,      	   {.v = scrotcmd } },
         { MODKEY,                       XK_b,      togglebar,      {0} },
 
         { MODKEY,                       XK_Prior,  focusstack,     {.i = -1 } },
