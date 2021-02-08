@@ -7,7 +7,7 @@ if [ $status = "Charging" ]; then
     a=""
 elif [ $status = "Discharging" ]; then
     a=""
-elif [ $status = "Not Charging" ]; then
+elif [ $status = "Not charging" ]; then
     a=""
 else
     a=" Error"
