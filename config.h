@@ -84,8 +84,8 @@ static Key keys[] = {
         TAGKEYS(                        XK_4,                      3)
         TAGKEYS(                        XK_5,                      4)
 
-        { MODKEY,                       XK_q,      killclient,     {0} },
-        { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+        { MODKEY,                       XK_w,      killclient,     {0} },
+        { MODKEY,	                XK_q,      quit,           {0} },
 
         { MODKEY|Mod1Mask,              XK_Up,     incnmaster,     {.i = +1 } },
         { MODKEY|Mod1Mask,              XK_Down,   incnmaster,     {.i = -1 } },
