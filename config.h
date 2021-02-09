@@ -63,11 +63,17 @@ static const char *termcmd[]  = { "konsole", NULL };
 static const char *filecmd[]  = { "dolphin", NULL };
 static const char *scrotcmd[]  = { "scrot", "-t", "25", NULL };
 
+static const char *volup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *voldown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+
 #include "shiftview.c"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-        { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+        { 0,                       XF86XK_AudioLowerVolume,      spawn,          {.v = voldown } },
+        { 0,                       XF86XK_AudioRaiseVolume,      spawn,          {.v = volup } },
+        
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
         { MODKEY,                       XK_k,      spawn,          {.v = termcmd } },
         { MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
 	
