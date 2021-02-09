@@ -7,10 +7,8 @@ if [ $status = "Charging" ]; then
     a=""
 elif [ $status = "Discharging" ]; then
     a=""
-elif [ $status = "Not charging" ]; then
-    a=""
 else
-    a=" Error"
+    a=" "
 fi
 
 cap=$(cat /sys/class/power_supply/BAT0/capacity)
