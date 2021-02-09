@@ -86,11 +86,20 @@ static Key keys[] = {
 
         { MODKEY|ControlMask,           XK_Left,   shiftview,      {.i = -1 } },
         { MODKEY|ControlMask,           XK_Right,  shiftview,      {.i = +1 } },
-        TAGKEYS(                        XK_1,                      0)
+        
+	{ MODKEY|ShiftMask,           	XK_Tab,    shiftview,      {.i = -1 } },
+        { MODKEY,           		XK_Tab,    shiftview,      {.i = +1 } },
+        
+	TAGKEYS(                        XK_1,                      0)
         TAGKEYS(                        XK_2,                      1)
         TAGKEYS(                        XK_3,                      2)
         TAGKEYS(                        XK_4,                      3)
         TAGKEYS(                        XK_5,                      4)
+
+	{ MODKEY|ControlMask|ShiftMask, XK_Left,   tag,            {.ui = 1 << 0 } },
+        { MODKEY|ControlMask|ShiftMask, XK_Left,   shiftview,      {.i = -1 } },
+	{ MODKEY|ControlMask|ShiftMask, XK_Right,  tag,            {.ui = 1 << 1 } },
+        { MODKEY|ControlMask|ShiftMask, XK_Right,  shiftview,      {.i = +1 } },
 
         { MODKEY,                       XK_w,      killclient,     {0} },
         { MODKEY,	                XK_q,      quit,           {0} },
