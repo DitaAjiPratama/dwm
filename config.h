@@ -67,6 +67,7 @@ static const char *volup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+
 static const char *voldown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 
 #include "shiftview.c"
+#include "shifttag.c"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -96,10 +97,8 @@ static Key keys[] = {
         TAGKEYS(                        XK_4,                      3)
         TAGKEYS(                        XK_5,                      4)
 
-	{ MODKEY|ControlMask|ShiftMask, XK_Left,   tag,            {.ui = 1 << 0 } },
-        { MODKEY|ControlMask|ShiftMask, XK_Left,   shiftview,      {.i = -1 } },
-	{ MODKEY|ControlMask|ShiftMask, XK_Right,  tag,            {.ui = 1 << 1 } },
-        { MODKEY|ControlMask|ShiftMask, XK_Right,  shiftview,      {.i = +1 } },
+	{ MODKEY|ControlMask|ShiftMask, XK_Left,   shifttag,       {.i = -1 } },
+	{ MODKEY|ControlMask|ShiftMask, XK_Right,  shifttag,       {.i = +1 } },
 
         { MODKEY,                       XK_w,      killclient,     {0} },
         { MODKEY,	                XK_q,      quit,           {0} },
