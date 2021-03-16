@@ -58,9 +58,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_blue2, "-nf", col_blush, "-sb", col_yellow2, "-sf", col_blue1, NULL };
+
 static const char *termcmd[]  = { "konsole", NULL };
 static const char *filecmd[]  = { "dolphin", NULL };
+
 static const char *scrotcmd[]  = { "scrot", "-t", "25", NULL };
 
 static const char *volup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
@@ -101,7 +104,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_Right,  shifttag,       {.i = +1 } },
 
         { MODKEY,                       XK_w,      killclient,     {0} },
-        { MODKEY,	                XK_q,      quit,           {0} },
+        { MODKEY|ShiftMask,	        XK_q,      quit,           {0} },
 
         { MODKEY|Mod1Mask,              XK_Up,     incnmaster,     {.i = +1 } },
         { MODKEY|Mod1Mask,              XK_Down,   incnmaster,     {.i = -1 } },
