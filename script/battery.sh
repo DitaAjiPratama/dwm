@@ -23,7 +23,7 @@ elif [ $cap -ge 61 ] && [ $cap -le 90 ]; then
 elif [ $cap -ge 91 ] && [ $cap -le 100 ]; then
     b=""
 else
-    b=""
+    b=""
 fi
 
-echo $a $b $cap"%"
+echo $a $b $status $cap
