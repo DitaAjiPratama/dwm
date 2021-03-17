@@ -3,6 +3,7 @@
 #include <X11/XF86keysym.h>
 
 static const unsigned int borderpx  = 2;
+static const unsigned int gappx     = 5;
 static const unsigned int snap      = 32;
 static const int showbar            = 1;
 static const int topbar             = 1;
@@ -84,6 +85,9 @@ static Key keys[] = {
 	{ 0,														XK_Print,									spawn,      	  {.v = scrotcmd } },
   { MODKEY,                       XK_b,											togglebar,      {0} },
 
+	{ MODKEY,                       XK_minus,									setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_equal,									setgaps,        {.i = +1 } },
+
   { MODKEY,                       XK_Prior,									focusstack,     {.i = -1 } },
   { MODKEY,                       XK_Next,									focusstack,     {.i = +1 } },
   { MODKEY,                       XK_Return,								zoom,           {0} },
@@ -128,4 +132,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
