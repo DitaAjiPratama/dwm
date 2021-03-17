@@ -62,54 +62,54 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_blue2, "-nf", col_blush, "-sb", col_yellow2, "-sf", col_blue1, NULL };
 
 static const char *termcmd[]  = { "konsole", NULL };
-static const char *filecmd[]  = { "dolphin", NULL };
+static const char *filecmd[]  = { "thunar", NULL };
 
-static const char *scrotcmd[]  = { "scrot", "-t", "25", NULL };
+static const char *scrotcmd[]	= { "scrot", "-t", "25", NULL };
 
-static const char *volup[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *volup[]		= { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldown[]  = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 
 #include "shiftview.c"
 #include "shifttag.c"
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-        { 0,                       XF86XK_AudioLowerVolume,      spawn,          {.v = voldown } },
-        { 0,                       XF86XK_AudioRaiseVolume,      spawn,          {.v = volup } },
-        
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-        { MODKEY,                       XK_k,      spawn,          {.v = termcmd } },
-        { MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
-	
-	{ 0,            		XK_Print,  spawn,      	   {.v = scrotcmd } },
-        { MODKEY,                       XK_b,      togglebar,      {0} },
+	/* modifier                     key												function        argument */
+  { 0,														XF86XK_AudioLowerVolume,	spawn,          {.v = voldown } },
+  { 0,														XF86XK_AudioRaiseVolume,	spawn,          {.v = volup } },
 
-        { MODKEY,                       XK_Prior,  focusstack,     {.i = -1 } },
-        { MODKEY,                       XK_Next,   focusstack,     {.i = +1 } },
-        { MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_p,											spawn,          {.v = dmenucmd } },
+  { MODKEY,                       XK_k,											spawn,          {.v = termcmd } },
+  { MODKEY,                       XK_e,											spawn,          {.v = filecmd } },
 
-        { MODKEY|ControlMask,           XK_Left,   shiftview,      {.i = -1 } },
-        { MODKEY|ControlMask,           XK_Right,  shiftview,      {.i = +1 } },
-        
-	{ MODKEY|ShiftMask,           	XK_Tab,    shiftview,      {.i = -1 } },
-        { MODKEY,           		XK_Tab,    shiftview,      {.i = +1 } },
-        
-	TAGKEYS(                        XK_1,                      0)
-        TAGKEYS(                        XK_2,                      1)
-        TAGKEYS(                        XK_3,                      2)
-        TAGKEYS(                        XK_4,                      3)
-        TAGKEYS(                        XK_5,                      4)
+	{ 0,														XK_Print,									spawn,      	  {.v = scrotcmd } },
+  { MODKEY,                       XK_b,											togglebar,      {0} },
 
-	{ MODKEY|ControlMask|ShiftMask, XK_Left,   shifttag,       {.i = -1 } },
-	{ MODKEY|ControlMask|ShiftMask, XK_Right,  shifttag,       {.i = +1 } },
+  { MODKEY,                       XK_Prior,									focusstack,     {.i = -1 } },
+  { MODKEY,                       XK_Next,									focusstack,     {.i = +1 } },
+  { MODKEY,                       XK_Return,								zoom,           {0} },
 
-        { MODKEY,                       XK_w,      killclient,     {0} },
-        { MODKEY|ShiftMask,	        XK_q,      quit,           {0} },
+  { MODKEY|ControlMask,           XK_Left,									shiftview,      {.i = -1 } },
+  { MODKEY|ControlMask,           XK_Right,									shiftview,      {.i = +1 } },
 
-        { MODKEY|Mod1Mask,              XK_Up,     incnmaster,     {.i = +1 } },
-        { MODKEY|Mod1Mask,              XK_Down,   incnmaster,     {.i = -1 } },
-        { MODKEY|Mod1Mask,              XK_Left,   setmfact,       {.f = -0.05} },
-        { MODKEY|Mod1Mask,              XK_Right,  setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,							XK_Tab,										shiftview,      {.i = -1 } },
+  { MODKEY,												XK_Tab,										shiftview,      {.i = +1 } },
+
+	TAGKEYS(XK_1,	0)
+  TAGKEYS(XK_2,	1)
+  TAGKEYS(XK_3,	2)
+  TAGKEYS(XK_4,	3)
+  TAGKEYS(XK_5,	4)
+
+	{ MODKEY|ControlMask|ShiftMask, XK_Left,									shifttag,       {.i = -1 } },
+	{ MODKEY|ControlMask|ShiftMask, XK_Right,									shifttag,       {.i = +1 } },
+
+  { MODKEY,												XK_w,											killclient,     {0} },
+  { MODKEY|ShiftMask,							XK_q,											quit,           {0} },
+
+  { MODKEY|Mod1Mask,              XK_Up,										incnmaster,     {.i = +1 } },
+  { MODKEY|Mod1Mask,              XK_Down,									incnmaster,     {.i = -1 } },
+  { MODKEY|Mod1Mask,              XK_Left,									setmfact,       {.f = -0.05} },
+  { MODKEY|Mod1Mask,              XK_Right,									setmfact,       {.f = +0.05} },
 };
 
 /* button definitions */
