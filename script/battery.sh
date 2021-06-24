@@ -26,4 +26,8 @@ else
     b=""
 fi
 
-echo $a $b $status $cap
+if [$cap -ge 0] && [$cap -le 100]; then
+	echo $a $b $status $cap "|"
+else
+	echo " |"
+fi
