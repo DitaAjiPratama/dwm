@@ -61,67 +61,75 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static       char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_dark1, "-nf", col_white, "-sb", col_dark3, "-sf", col_white, NULL };
+static       char dmenumon[2]	= "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[]	= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_dark1, "-nf", col_white, "-sb", col_dark3, "-sf", col_white, NULL };
 
-static const char *termcmd[]  = { "konsole"	, NULL };
-static const char *filecmd[]  = { "thunar"	, NULL };
+static const char *roficmd[]	= { "rofi", "-modi", "drun", "-show", "drun", "-show-icons", "-theme", "Arc-Dark.rasi", "-columns", "2", "-lines", "10", "-window-thumbnail"};
 
-static const char *scrotcmd[] = { "scrot"		, NULL };
+static const char *termcmd[]	= { "kitty"	, NULL };
+static const char *filecmd[]	= { "thunar"	, NULL };
 
-/* static const char *nmtui[]    = { "st"       , "nmtui" , NULL }; */
-static const char *nmtui[]    = { "st"			, "nmtui"			, NULL };
+static const char *scrotcmd[]	= { "scrot"	, NULL };
+
+static const char *nmtui[]	= { "kitty"			, "nmtui",	NULL };
 static const char *nmcedit[]	= { "nm-connection-editor"	, NULL };
-static const char *htop[]     = { "st"			, "htop"			, NULL };
+static const char *htop[]	= { "kitty"			, "htop", 	NULL };
 
-static const char *volup[]    = { "pactl"		, "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *voldown[]  = { "pactl"		, "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *volup[]	= { "pactl"	, "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *voldown[]	= { "pactl"	, "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+
+static const char *briup[]	= { "bash"	, "/home/aji/briu.sh" };
+static const char *bridown[]	= { "bash"	, "/home/aji/brid.sh" };
 
 #include "shiftview.c"
 #include "shifttag.c"
 #include <X11/XF86keysym.h>
 
 static Key keys[] = {
-	/* modifier											key												function		argument */
-	{ 0,														XF86XK_AudioLowerVolume,	spawn,			{.v = voldown}	},
-	{ 0,														XF86XK_AudioRaiseVolume,	spawn,			{.v = volup}		},
-	{ MODKEY,												XK_comma,									spawn,			{.v = voldown}	},
-	{ MODKEY,												XK_period,								spawn,			{.v = volup}		},
+	/* modifier			key				function	argument */
+	{ MODKEY|ShiftMask,		XK_comma,			spawn,		{.v = bridown}	},
+	{ MODKEY|ShiftMask,		XK_period,			spawn,		{.v = briup}	},
+	{ 0,				XF86XK_MonBrightnessDown,	spawn,		{.v = bridown}	},
+	{ 0,				XF86XK_MonBrightnessUp,		spawn,		{.v = briup}	},
+	{ 0,				XF86XK_AudioLowerVolume,	spawn,		{.v = voldown}	},
+	{ 0,				XF86XK_AudioRaiseVolume,	spawn,		{.v = volup}	},
+	{ MODKEY,			XK_comma,			spawn,		{.v = voldown}	},
+	{ MODKEY,			XK_period,			spawn,		{.v = volup}	},
 
-	{ MODKEY,												XK_p,											spawn,			{.v = dmenucmd}	},
-	{ MODKEY,												XK_k,											spawn,			{.v = termcmd}	},
-	{ MODKEY,												XK_e,											spawn,			{.v = filecmd}	},
+	{ MODKEY,			XK_p,				spawn,		{.v = roficmd}	},
+	{ MODKEY,			XK_k,				spawn,		{.v = termcmd}	},
+	{ MODKEY,			XK_e,				spawn,		{.v = filecmd}	},
 
-	{ MODKEY,												XK_n,											spawn,			{.v = nmtui}		},
-	{ MODKEY|ShiftMask,							XK_n,											spawn,			{.v = nmcedit}	},
-	{ MODKEY,												XK_h,											spawn,			{.v = htop}			},
+	{ MODKEY,			XK_n,				spawn,		{.v = nmtui}	},
+	{ MODKEY|ShiftMask,		XK_n,				spawn,		{.v = nmcedit}	},
+	{ MODKEY,			XK_h,				spawn,		{.v = htop}	},
 
-	{ 0,														XK_Print,									spawn,			{.v = scrotcmd}	},
-	{ MODKEY,												XK_b,											togglebar,	{0}							},
+	{ 0,				XK_Print,			spawn,		{.v = scrotcmd}	},
+	{ MODKEY,			XK_b,				togglebar,	{0}		},
 
-	{ MODKEY,												XK_minus,									setgaps,		{.i = -1}				},
-	{ MODKEY,												XK_equal,									setgaps,		{.i = +1}				},
+	{ MODKEY,			XK_minus,			setgaps,	{.i = -1}	},
+	{ MODKEY,			XK_equal,			setgaps,	{.i = +1}	},
 
-	{ MODKEY,												XK_Prior,									focusstack,	{.i = -1}				},
-	{ MODKEY,												XK_Next,									focusstack,	{.i = +1}				},
-	{ MODKEY,												XK_Return,								zoom,				{0}							},
+	{ MODKEY,			XK_Prior,			focusstack,	{.i = -1}	},
+	{ MODKEY,			XK_Next,			focusstack,	{.i = +1}	},
+	{ MODKEY,			XK_Return,			zoom,		{0}		},
 
-	{ MODKEY|ControlMask,						XK_Left,									shiftview,	{.i = -1}				},
-	{ MODKEY|ControlMask,						XK_Right,									shiftview,	{.i = +1}				},
+	{ MODKEY|ControlMask,		XK_Left,			shiftview,	{.i = -1}	},
+	{ MODKEY|ControlMask,		XK_Right,			shiftview,	{.i = +1}	},
 
-	{ MODKEY|ShiftMask,							XK_Tab,										shiftview,	{.i = -1}				},
-	{ MODKEY,												XK_Tab,										shiftview,	{.i = +1}				},
+	{ MODKEY|ShiftMask,		XK_Tab,				shiftview,	{.i = -1}	},
+	{ MODKEY,			XK_Tab,				shiftview,	{.i = +1}	},
 
-	{ MODKEY|ControlMask|ShiftMask,	XK_Left,									shifttag,		{.i = -1}				},
-	{ MODKEY|ControlMask|ShiftMask,	XK_Right,									shifttag,		{.i = +1}				},
+	{ MODKEY|ControlMask|ShiftMask,	XK_Left,			shifttag,	{.i = -1}	},
+	{ MODKEY|ControlMask|ShiftMask,	XK_Right,			shifttag,	{.i = +1}	},
 
-	{ MODKEY,												XK_w,											killclient,	{0}							},
-	{ MODKEY|ShiftMask,							XK_q,											quit,				{0}							},
+	{ MODKEY,			XK_w,				killclient,	{0}		},
+	{ MODKEY|ShiftMask,		XK_q,				quit,		{0}		},
 
-	{ MODKEY|Mod1Mask,							XK_Up,										incnmaster,	{.i = +1}				},
-	{ MODKEY|Mod1Mask,							XK_Down,									incnmaster,	{.i = -1}				},
-	{ MODKEY|Mod1Mask,							XK_Left,									setmfact,		{.f = -0.05}		},
-	{ MODKEY|Mod1Mask,							XK_Right,									setmfact,		{.f = +0.05}		},
+	{ MODKEY|Mod1Mask,		XK_Up,				incnmaster,	{.i = +1}	},
+	{ MODKEY|Mod1Mask,		XK_Down,			incnmaster,	{.i = -1}	},
+	{ MODKEY|Mod1Mask,		XK_Left,			setmfact,	{.f = -0.05}	},
+	{ MODKEY|Mod1Mask,		XK_Right,			setmfact,	{.f = +0.05}	},
 
 	TAGKEYS(XK_1, 0)
 	TAGKEYS(XK_2, 1)
