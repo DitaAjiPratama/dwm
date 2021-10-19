@@ -6,7 +6,7 @@ status=$(cat /sys/class/power_supply/BAT0/status)
 if [ $status = "Charging" ]; then
     a=""
 elif [ $status = "Discharging" ]; then
-    a=""
+    a=""
 else
     a=" "
 fi
@@ -26,8 +26,10 @@ else
     b=""
 fi
 
-if [$cap -ge 0] && [$cap -le 100]; then
-	echo $a $b $status $cap "|"
-else
-	echo " |"
-fi
+echo $a $b $cap "|"
+
+#if [$cap -ge 0] && [$cap -le 100]; then
+#	echo $a $b $status $cap "|"
+#else
+#	echo " |"
+#fi
