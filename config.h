@@ -22,7 +22,7 @@ static const char col_white[]       = "#FFFFFF";
 static const char *colors[][3]      = {
 	/*               fg,        bg,        border    */
 	[SchemeNorm] = { col_white, col_dark1, col_dark1 },
-	[SchemeSel ] = { col_white, col_dark3, col_blush },
+	[SchemeSel ] = { col_white, col_dark3, col_dark3 },
 };
 
 static const char *tags[] = { "1", "2", "3", "4", "5" };
