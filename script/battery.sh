@@ -7,8 +7,10 @@ if [ $status = "Charging" ]; then
     a=""
 elif [ $status = "Discharging" ]; then
     a=""
+elif [ $status = "Unknown" ]; then
+    a="" 
 else
-    a=" "
+    a=""
 fi
 
 cap=$(cat /sys/class/power_supply/BAT0/capacity)
@@ -23,13 +25,8 @@ elif [ $cap -ge 61 ] && [ $cap -le 90 ]; then
 elif [ $cap -ge 91 ] && [ $cap -le 100 ]; then
     b=""
 else
-    b=""
+    b=""
 fi
 
 echo $a $b $cap "|"
 
-#if [$cap -ge 0] && [$cap -le 100]; then
-#	echo $a $b $status $cap "|"
-#else
-#	echo " |"
-#fi
