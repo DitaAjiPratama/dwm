@@ -80,8 +80,8 @@ static const char *htop[]	= { "kitty"			, "htop", 	NULL			};
 static const char *volup[]	= { "pactl"	, "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL	};
 static const char *voldown[]	= { "pactl"	, "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL	};
 
-static const char *briup[]	= { "bash"	, "/home/aji/briu.sh" 					};
-static const char *bridown[]	= { "bash"	, "/home/aji/brid.sh" 					};
+static const char *briup[]	= { "bash"	, "/home/aji/.dwm/script/briu.sh" 					};
+static const char *bridown[]	= { "bash"	, "/home/aji/.dwm/script/brid.sh" 					};
 
 #include "shiftview.c"
 #include "shifttag.c"
