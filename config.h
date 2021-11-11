@@ -98,6 +98,11 @@ static Key keys[] = {
 	{ MODKEY,			XK_comma,			spawn,		{.v = voldown}		},
 	{ MODKEY,			XK_period,			spawn,		{.v = volup}		},
 
+	{ MODKEY,			XK_Left,			focusmon,	{.i = -1}		},
+	{ MODKEY,			XK_Right,			focusmon,	{.i = +1}		},
+	{ MODKEY|ShiftMask,		XK_Left,			tagmon,		{.i = -1}		},
+	{ MODKEY|ShiftMask,		XK_Right,			tagmon,		{.i = +1}		},
+
 	{ MODKEY,			XK_p,				spawn,		{.v = roficmd}		},
 	{ MODKEY|ShiftMask,		XK_p,				spawn,		{.v = dmenucmd}		},
 	{ MODKEY,			XK_k,				spawn,		{.v = termcmd}		},
