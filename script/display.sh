@@ -1,1 +1,1 @@
-xrandr --output HDMI-2 --auto --left-of DP-1
+#xrandr --output HDMI-2 --auto --left-of DP-1
