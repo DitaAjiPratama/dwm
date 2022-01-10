@@ -1,1 +1,1 @@
-feh --bg-fill ~/Pictures/Wallpapers/daniel-tseng-W9kq9suABY4-unsplash.jpg
+feh --bg-fill ~/.dwm/wallpaper/8913281_p0.jpg
