@@ -4,7 +4,7 @@ sudo apt-get dist-upgrade -y
 sudo apt-get autoremove -y
 
 sudo apt-get install -y git xorg libx11-dev libxft-dev libxinerama-dev xdm suckless-tools dmenu
-sudo apt-get install -y feh rofi kitty thunar scrot calcurse
+sudo apt-get install -y feh rofi kitty thunar scrot calcurse htop pavucontrol
 
 git clone https://github.com/DitaAjiPratama/dwm.git ~/.dwm
 
