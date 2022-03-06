@@ -122,6 +122,9 @@ static Key keys[] = {
 
 	{ MODKEY,			XK_Prior,			focusstack,	{.i = -1}		},
 	{ MODKEY,			XK_Next,			focusstack,	{.i = +1}		},
+	{ MODKEY,			XK_Down,			focusstack,	{.i = -1}		},
+	{ MODKEY,			XK_Up,				focusstack,	{.i = +1}		},
+
 	{ MODKEY,			XK_Return,			zoom,		{0}			},
 
 	{ MODKEY|ControlMask,		XK_Left,			shiftview,	{.i = -1}		},
